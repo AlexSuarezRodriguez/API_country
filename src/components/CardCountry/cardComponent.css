@@ -1,0 +1,22 @@
+.container-card{
+  height: 350px;
+  width: 200px;
+  display: grid;
+  grid-template-rows: 4fr 2fr 1fr;
+  border-radius: 10px;
+  border: 1px solid black;
+  /* z-index: 3; */
+}
+.container-card > img{
+  object-fit: fill;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px 10px 0px 0px;
+  /* z-index: 1; */
+  }
+  .container-card_paragraph{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+  }
