@@ -28,6 +28,7 @@ function App() {
       setFavorite([...favorite, ...favCountry]);
       return null;
     }
+    // eslint-disable-next-line no-alert
     alert(`el pais ${id} ya se encuentra en la lista de favoritos`);
   };
   const handleDelete = (id) => {
@@ -49,7 +50,7 @@ function App() {
     }
   };
 
-  console.log(countrySlice);
+  // console.log(countrySlice);
 
   useEffect(() => {
     fetchCountrys();
