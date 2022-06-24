@@ -1,5 +1,6 @@
-import React from "react";
-import "./cardComponent.css";
+/* eslint-disable react/prop-types */
+import React from 'react';
+import './cardComponent.css';
 // import PropTypes from "prop-types";
 
 function CardComponent({
@@ -20,22 +21,37 @@ function CardComponent({
     <div className="container-card">
       <img src={image} alt={country} />
       <div className="container-card_paragraph">
-        <h2 style={{margin: '0 auto'}}>{country}</h2>
-        <p>Capital: {capital}</p>
-        <p>lenguajes
-        {len.map((element) => (
-          <strong style={{margin: '0 auto'}}><br/>{element}</strong>
-        ))}
-
+        <h2 style={{ margin: '0 auto' }}>{country}</h2>
+        <p>
+          Capital:
+          {' '}
+          {capital}
+        </p>
+        <p>
+          lenguajes
+          {len.map((element) => (
+            <strong style={{ margin: '0 auto' }}>
+              <br />
+              {element}
+            </strong>
+          ))}
         </p>
         {currencies.map((element) => (
-          <p> Moneda:{element.name}</p>
+          <p>
+            {' '}
+            Moneda:
+            {element.name}
+          </p>
         ))}
       </div>
       {type ? (
-        <button onClick={() => add(id)}>agregar</button>
+        <button type="button" onClick={() => add(id)}>
+          agregar
+        </button>
       ) : (
-        <button onClick={() => delet(id)}>quitar</button>
+        <button type="button" onClick={() => delet(id)}>
+          quitar
+        </button>
       )}
     </div>
   );
