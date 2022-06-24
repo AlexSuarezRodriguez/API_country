@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { fetchData } from "./utils/fetchData";
-import CardComponent from "./components/CardCountry";
+import { useEffect, useState } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import fetchData from './utils/fetchData';
+import CardComponent from './components/CardCountry';
 
 function App() {
   const [country, setCountry] = useState([]);
@@ -9,7 +9,7 @@ function App() {
   const [end, setEnd] = useState(40);
   const [countrySlice, setCountrySlice] = useState([]);
   const [hashMore, setHashMore] = useState(true);
-  const [view, setView] = useState("home");
+  const [view, setView] = useState('home');
   const [favorite, setFavorite] = useState([]);
 
   const fetchCountrys = async () => {
@@ -18,21 +18,22 @@ function App() {
     return setCountry(data);
   };
 
+  // eslint-disable-next-line consistent-return
   const handleAdd = (id) => {
     const findFav = favorite.find((element) => element.name.common === id);
     if (!findFav) {
       const favCountry = country.filter(
-        (element) => element.name.common === id
+        (element) => element.name.common === id,
       );
       setFavorite([...favorite, ...favCountry]);
-      console.log("agregar");
       return null;
     }
+    // eslint-disable-next-line no-alert
     alert(`el pais ${id} ya se encuentra en la lista de favoritos`);
   };
   const handleDelete = (id) => {
     const deleteCountry = favorite.filter(
-      (element) => element.name.common !== id
+      (element) => element.name.common !== id,
     );
     setFavorite(deleteCountry);
   };
@@ -42,14 +43,14 @@ function App() {
     setEnd((pre) => pre + 20);
     setCountrySlice([...countrySlice, ...country.slice(start, end)]);
     if (
-      country.slice(start, end).length === 0 ||
-      country.slice(start, end) < 20
+      country.slice(start, end).length === 0
+      || country.slice(start, end) < 20
     ) {
       setHashMore(false);
     }
   };
 
-  console.log(countrySlice);
+  // console.log(countrySlice);
 
   useEffect(() => {
     fetchCountrys();
@@ -57,30 +58,38 @@ function App() {
   return (
     <div className="cont">
       <div className="navbar">
-        <button onClick={() => setView("home")} className="button">
+        <button
+          type="button"
+          onClick={() => setView('home')}
+          className="button"
+        >
           home
         </button>
-        <button onClick={() => setView("favoritos")} className="button">
+        <button
+          type="button"
+          onClick={() => setView('favoritos')}
+          className="button"
+        >
           favoritos
         </button>
       </div>
       <div className="container">
-        {view === "home" ? (
+        {view === 'home' ? (
           <InfiniteScroll
             className="infiniteScroll"
-            dataLength={countrySlice.length} //valor inicial
+            dataLength={countrySlice.length} // valor inicial
             next={fetchDataMoreCountry}
             hasMore={hashMore}
             loader={<h4>Loading...</h4>}
-            endMessage={
-              <p style={{ textAlign: "center" }}>
+            endMessage={(
+              <p style={{ textAlign: 'center' }}>
                 <b>not country for view</b>
               </p>
-            }
+            )}
           >
-            {countrySlice.map((element, index) => (
+            {countrySlice.map((element) => (
               <CardComponent
-                key={`${element.name.common}${index}`}
+                key={`${element.name.common}`}
                 id={element.name.common}
                 country={element.name.common}
                 image={element.flags.png}
@@ -95,9 +104,9 @@ function App() {
           </InfiniteScroll>
         ) : (
           <div className="infiniteScroll">
-            {favorite.map((element, index) => (
+            {favorite.map((element) => (
               <CardComponent
-                key={`${element.name.common}${index}`}
+                key={`${element.name.common}`}
                 id={element.name.common}
                 country={element.name.common}
                 image={element.flags.png}
