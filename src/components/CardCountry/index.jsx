@@ -1,6 +1,6 @@
 import React from "react";
 import "./cardComponent.css";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 function CardComponent({
   country,
